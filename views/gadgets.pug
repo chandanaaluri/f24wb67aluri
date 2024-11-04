@@ -1,37 +1,23 @@
-extends layout
-
-block content
-  h1 Search Results - Gadgets
-  p Here are the available gadgets:
-
-  // Define hardcoded search results with unbuffered server-side code
-  -
-    const results = [
-      { name: 'Smart Watch', functionality: 'Fitness Tracking', batteryLife: 24 },
-      { name: 'Noise Cancelling Headphones', functionality: 'Noise Reduction', batteryLife: 36 },
-      { name: 'Portable Speaker', functionality: 'Audio Playback', batteryLife: 12 }
-    ];
-
-  // Outer div for responsive layout
-  .container-fluid
-    .row
-      // Iterate over each item in results
-      each item in results
-        .col-sm-2
-          h3 #{item.name}
-          p Functionality: #{item.functionality}
-          p Battery Life: #{item.batteryLife} hours
-
-  // Boost div and button
-  div(id="boost") Add in extra
-  button(type="button", class="btn btn-secondary", onclick="boost()") Press Me
-
-  // JavaScript for boost function
-  script.
-    let value = 0;
-    let amt = 3;
-    function boost() {
-      amt += 1;
-      value += amt;
-      document.getElementById("boost").textContent = `Boosted ${value} by ${amt}`;
-    }
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css') // Link your CSS if needed
+  body
+    h1= title
+    // Your content for displaying gadgets
+    div.container-fluid
+      div.row
+        // Example data rendering
+        - const results = [
+        -   { name: 'Gadget A', brand: 'Brand X', cost: 99.99 },
+        -   { name: 'Gadget B', brand: 'Brand Y', cost: 49.99 },
+        -   { name: 'Gadget C', brand: 'Brand Z', cost: 19.99 }
+        - ];
+        
+        - for (let item of results) {
+          div.col-sm-2
+            h2 #{item.name}
+            p Brand: #{item.brand}
+            p Cost: $#{item.cost}
+        }
