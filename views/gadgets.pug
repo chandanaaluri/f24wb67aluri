@@ -8,16 +8,15 @@ html
     // Your content for displaying gadgets
     div.container-fluid
       div.row
-        // Example data rendering
         - const results = [
         -   { name: 'Gadget A', brand: 'Brand X', cost: 99.99 },
         -   { name: 'Gadget B', brand: 'Brand Y', cost: 49.99 },
         -   { name: 'Gadget C', brand: 'Brand Z', cost: 19.99 }
         - ];
         
-        - for (let item of results) {
+        // Corrected loop syntax
+        each item in results
           div.col-sm-2
             h2 #{item.name}
             p Brand: #{item.brand}
             p Cost: $#{item.cost}
-        }
