@@ -3,10 +3,30 @@ extends layout
 block content
   h1 Search Results - Gadgets
   p Here are the available gadgets:
+
+  // Define hardcoded search results with unbuffered server-side code
+  -
+    const results = [
+      { name: 'Smart Watch', functionality: 'Fitness Tracking', batteryLife: 24 },
+      { name: 'Noise Cancelling Headphones', functionality: 'Noise Reduction', batteryLife: 36 },
+      { name: 'Portable Speaker', functionality: 'Audio Playback', batteryLife: 12 }
+    ];
+
+  // Outer div for responsive layout
+  .container-fluid
+    .row
+      // Iterate over each item in results
+      each item in results
+        .col-sm-2
+          h3 #{item.name}
+          p Functionality: #{item.functionality}
+          p Battery Life: #{item.batteryLife} hours
+
+  // Boost div and button
   div(id="boost") Add in extra
   button(type="button", class="btn btn-secondary", onclick="boost()") Press Me
 
-  // Add script to declare variables and define boost() function
+  // JavaScript for boost function
   script.
     let value = 0;
     let amt = 3;
