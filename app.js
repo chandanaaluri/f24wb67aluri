@@ -6,7 +6,9 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const gadgetsRouter = require('./routes/gadgets'); // Ensure this matches your file name
+const gadgetsRouter = require('./routes/gadgets');
+const gridRouter = require('./routes/grid'); // Import the grid router
+
 var app = express();
 
 // view engine setup
@@ -22,10 +24,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Set up routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/gadgets', gadgetsRouter); // Use this for the gadgets route
+app.use('/gadgets', gadgetsRouter);
 app.get('/gadgets', (req, res) => {
   res.render('gadgets', { title: 'Search Results: Gadgets' });
 });
+
+// Add the /grid route to render grid.pug with query parameters
+app.use('/grid', gridRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
