@@ -1,22 +1,24 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css') // Link your CSS if needed
+    title Search Results: Gadgets
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
   body
-    h1= title
-    // Your content for displaying gadgets
-    div.container-fluid
-      div.row
-        - const results = [
-        -   { name: 'Gadget A', brand: 'Brand X', cost: 99.99 },
-        -   { name: 'Gadget B', brand: 'Brand Y', cost: 49.99 },
-        -   { name: 'Gadget C', brand: 'Brand Z', cost: 19.99 }
-        - ];
-        
-        // Corrected loop syntax
-        each item in results
-          div.col-sm-2
-            h2 #{item.name}
-            p Brand: #{item.brand}
-            p Cost: $#{item.cost}
+    h1 Search Results: Gadgets
+
+    //- Define the hard-coded array of gadgets
+    -
+      let results = [
+        { gadget_name: 'Smartwatch', price: 199, functionality: 'Fitness Tracking' },
+        { gadget_name: 'VR Headset', price: 299, functionality: 'Virtual Reality Experience' },
+        { gadget_name: 'Drone', price: 499, functionality: 'Aerial Photography' }
+      ];
+
+    //- Set up the Bootstrap container and row
+    .container-fluid
+      .row
+        each gadget in results
+          .col-sm-2
+            h3 #{gadget.gadget_name}
+            p Price: $#{gadget.price}
+            p Functionality: #{gadget.functionality}
