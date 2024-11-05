@@ -3,12 +3,15 @@ html
   head
     title Search Results: Gadgets
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+    script.
+      function buy(index) {
+        alert(`You purchased item ${index}`);
+      }
   body
     h1 Search Results: Gadgets
 
     //- Define the hard-coded array of gadgets
-    -
-      let results = [
+    - let results = [
         { gadget_name: 'Smartwatch', price: 199, functionality: 'Fitness Tracking' },
         { gadget_name: 'VR Headset', price: 299, functionality: 'Virtual Reality Experience' },
         { gadget_name: 'Drone', price: 499, functionality: 'Aerial Photography' }
@@ -17,8 +20,8 @@ html
     //- Set up the Bootstrap container and row
     .container-fluid
       .row
-        each gadget in results
-          .col-sm-2
+        each gadget, index in results
+          .col-sm-2(onclick=`buy(${index})`) // Add the onclick event to the column
             h3 #{gadget.gadget_name}
             p Price: $#{gadget.price}
             p Functionality: #{gadget.functionality}
