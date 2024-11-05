@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 const gadgetsRouter = require('./routes/gadgets');
 const gridRouter = require('./routes/grid');
 const pickRouter = require('./routes/pick'); // Make sure this path is correct
-app.use('/selector', pickRouter); // Make sure the route is set up as /selector
+//app.use('/selector', pickRouter); // Make sure the route is set up as /selector
 
 
 var app = express();
