@@ -7,7 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const gadgetsRouter = require('./routes/gadgets');
-const gridRouter = require('./routes/grid'); // Import the grid router
+const gridRouter = require('./routes/grid');
+const pickRouter = require('./routes/pick'); // Import pick router
 
 var app = express();
 
@@ -25,12 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/gadgets', gadgetsRouter);
-app.get('/gadgets', (req, res) => {
-  res.render('gadgets', { title: 'Search Results: Gadgets' });
-});
-
-// Add the /grid route to render grid.pug with query parameters
 app.use('/grid', gridRouter);
+app.use('/selector', pickRouter); // Add the /selector route for random item display
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -39,11 +36,9 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
